@@ -1,0 +1,47 @@
+<div class="w-50 mx-auto">
+    <form (ngSubmit)="handleShippingAddress(shippingAddressForm)" [formGroup]="shippingAddressForm">
+
+        <h2 class="text-main fw-bold h4">Shipping Address Details :</h2>
+
+        <label class="mt-3" for="details">Address Details :</label>
+        <input class="form-control mt-2" type="text" id="details" formControlName="details">
+        <div *ngIf="shippingAddressForm.get('details')?.touched " class="text-danger">
+            <p *ngIf="shippingAddressForm.get('details')?.getError('required')">* Adrress Details Field is required</p>
+        </div>
+
+        <label class="mt-3" for="phone">Phone :</label>
+        <input class="form-control mt-2" type="tel" id="phone" formControlName="phone">
+        <div *ngIf="shippingAddressForm.get('phone')?.touched && shippingAddressForm.get('phone')?.invalid" class="text-danger">
+            <p *ngIf="shippingAddressForm.get('phone')?.getError('required')" class="m-0">* Phone Number is required</p>
+            <p *ngIf="shippingAddressForm.get('phone')?.getError('pattern')" class="m-0">Please Enter Valid Egyptian Phone Number</p>
+        </div>
+
+        <label class="mt-3" for="city">City :</label>
+        <input class="form-control mt-2" type="text" id="city" formControlName="city">
+        <div *ngIf="shippingAddressForm.get('city')?.touched" class="text-danger">
+            <p *ngIf="shippingAddressForm.get('city')?.getError('required')">* City Field is required</p>
+        </div>
+
+        <div class="mt-4">
+            <p class="fw-bold text-main">Choose Payment Type :</p>
+
+            <input (change)="paymentChange('cash')" id="cash" type="radio" name="payment" value="cash" [checked]="paymentType === 'cash'">
+            <label class="mx-2 cursor-pointer" for="cash">Cash</label>
+
+            <input (change)="paymentChange('online')" class="ms-5" id="online" type="radio" name="payment" value="online" [checked]="paymentType === 'online'">
+            <label class="mx-2 cursor-pointer" for="online">
+                Online
+            <span>
+                <img class="ms-2" width="35" src="assets/images/master.svg" alt="">
+            </span>
+            </label>
+
+            <!-- <p class="my-5">{{paymentType}}</p> -->
+        </div>
+
+        <button [disabled]="shippingAddressForm.invalid" class="btn bg-main text-white d-block ms-auto mt-4">Payment Proceed</button>
+        
+    </form>
+</div>
+
+<app-loading-screen *ngIf="loadingScreen"></app-loading-screen>

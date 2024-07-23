@@ -1,0 +1,9 @@
+nav.navbar{
+    z-index: 999999;
+}
+.badge{
+    font-size: 10px;
+}
+.fa-cart-shopping,.fa-heart{
+    font-size: 20px;
+}

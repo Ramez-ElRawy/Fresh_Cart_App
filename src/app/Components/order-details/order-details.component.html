@@ -1,0 +1,57 @@
+<h2 class="fw-bold">Order Number : {{userOrder.id}}</h2>
+<div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+        <div class="bg-main-light p-3 rounded">
+            <p class="fw-bold text-main">Order Summary</p>
+            <hr/>
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="me-auto">Created :</span>
+                <span class="ms-auto fw-bold text-main">{{userOrder.createdAt}}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="me-auto">Items Quantity :</span>
+                <span class="ms-auto fw-bold text-main">{{userOrder.cartItems.length}}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="me-auto">is Dilivered :</span>
+                <div>
+                    <span *ngIf="userOrder.isDelivered">
+                        <i class="fa-regular fa-circle-check text-success"></i>
+                    </span>
+                    <span *ngIf="!userOrder.isDelivered">
+                        <i class="fa-regular fa-circle-xmark text-danger"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="me-auto">is Paid :</span>
+                <div>
+                    <span *ngIf="userOrder.isPaid">
+                        <i class="fa-regular fa-circle-check text-success"></i>
+                    </span>
+                    <span *ngIf="!userOrder.isPaid">
+                        <i class="fa-regular fa-circle-xmark text-danger"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="me-auto">Payment Method Type :</span>
+                <span class="ms-auto fw-bold text-main">{{userOrder.paymentMethodType}}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="me-auto">Total Order Price :</span>
+                <span class="ms-auto fw-bold text-main">{{userOrder.totalOrderPrice |addEGP}}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="me-auto">Shipping Price :</span>
+                <span class="ms-auto fw-bold text-main">{{userOrder.shippingPrice |addEGP}}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="me-auto">Tax Price :</span>
+                <span class="ms-auto fw-bold text-main">{{userOrder.taxPrice |addEGP}}</span>
+            </div>
+
+        </div>
+    </div>
+</div>

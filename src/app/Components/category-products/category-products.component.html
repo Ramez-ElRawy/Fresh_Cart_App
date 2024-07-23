@@ -1,0 +1,13 @@
+<div *ngIf="categoryProductList.length; else non" class="row g-4">
+    <div *ngFor="let product of categoryProductList" class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        <div>
+            <app-product [product] = "product"></app-product>
+        </div>
+    </div>
+</div>
+<app-loading-screen *ngIf="loadingScreen"></app-loading-screen>
+<ng-template #non>
+    <div class="vh-100 d-flex justify-content-center align-items-lg-start">
+        <h2 class="h4 fw-bold text-center my-5">No Available Products For This Category</h2>
+    </div>
+</ng-template>

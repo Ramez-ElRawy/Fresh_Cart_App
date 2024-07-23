@@ -1,0 +1,27 @@
+<h1 class="bg-info text-center">Test Register Form</h1>
+<div class="w-50 mx-auto my-5">
+    <form (ngSubmit)="handleSubmit(myForm)" #myForm="ngForm">
+        <label for="uName">UserName :</label>
+        <input ngModel name="userName" id="uName" class="form-control" type="text" required minlength="3" #userName="ngModel">
+        <div *ngIf="userName.touched && userName.invalid" class="text-danger">
+            <p *ngIf="userName.errors?.['required']" class="my-0">userName is required</p>
+            <p *ngIf="userName.errors?.['minlength']" class="my-0">userName Minimum Length is at least 3 Characters</p>
+        </div>
+
+        <label for="uEmail" class="mt-3">Email :</label>
+        <input ngModel name="userMail" id="uEmail" class="form-control" type="email" required email #userMail="ngModel">
+        <div *ngIf="userMail.touched && userMail.invalid" class="text-danger">
+            <p *ngIf="userMail.errors?.['required']" class="my-0">userEmail is required</p>
+            <p *ngIf="userMail.errors?.['email']" class="my-0">Please Enter valid Email</p>
+        </div>
+
+        <label for="uPassword" class="mt-3">Password :</label>
+        <input ngModel name="userPassword" id="uPassword" class="form-control" type="password" required pattern="[A-Za-z0-9]{5,}" #userPass="ngModel">
+        <div *ngIf="userPass.touched && userPass.invalid" class="text-danger">
+            <p *ngIf="userPass.errors?.['required']" class="my-0">userPassword is required</p>
+            <p *ngIf="userPass.errors?.['pattern']" class="my-0">userPassword Minimum Length is at least 6 Characters</p>
+        </div>
+
+        <button class="btn btn-primary mt-4">Submit</button>
+    </form>
+</div>

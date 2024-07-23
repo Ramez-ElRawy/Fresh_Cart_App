@@ -1,0 +1,76 @@
+<div class="bg-main-light rounded shadow pb-4">
+    <h2 class="fw-bold pt-5 ps-5">User Orders :</h2>
+    <div *ngFor="let order of allOrders" class="row my-5">
+        <div class="col-md-8 mx-auto bg-white p-3 rounded-top">
+            <div>
+                <h3 class="fw-bold p-2 border-bottom">Order ID : <span class="text-main">{{order.id}}</span></h3>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="me-auto fw-semibold">Created At :</span>
+                    <span class="ms-auto fw-bold">{{order.createdAt}}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-1">
+                    <span class="me-auto fw-semibold">Items Quantity :</span>
+                    <span class="ms-auto fw-bold">{{order.cartItems.length}}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-1">
+                    <span class="me-auto fw-semibold">is Dilivered :</span>
+                    <div>
+                        <span *ngIf="order.isDelivered">
+                            <i class="fa-regular fa-circle-check text-success"></i>
+                        </span>
+                        <span *ngIf="!order.isDelivered">
+                            <i class="fa-regular fa-circle-xmark text-danger"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-1">
+                    <span class="me-auto fw-semibold">is Paid :</span>
+                    <div>
+                        <span *ngIf="order.isPaid">
+                            <i class="fa-regular fa-circle-check text-success"></i>
+                        </span>
+                        <span *ngIf="!order.isPaid">
+                            <i class="fa-regular fa-circle-xmark text-danger"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center pt-1">
+                    <span class="me-auto fw-semibold">Payment Method Type :</span>
+                    <span class="ms-auto fw-bold">{{order.paymentMethodType}}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-1">
+                    <span class="me-auto fw-semibold">Total Order Price :</span>
+                    <span class="ms-auto fw-bold text-main">{{order.totalOrderPrice |addEGP}}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-1">
+                    <span class="me-auto fw-semibold">Shipping Price :</span>
+                    <span class="ms-auto fw-bold text-main">{{order.shippingPrice |addEGP}}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-1">
+                    <span class="me-auto fw-semibold">Tax Price :</span>
+                    <span class="ms-auto fw-bold text-main">{{order.taxPrice |addEGP}}</span>
+                </div>
+            </div>
+
+            <div *ngFor="let product of order.cartItems" class="row my-4 align-items-center border-top pt-4">
+                <div class="col-md-2">
+                    <div>
+                        <img class="w-100 img-thumbnail" [src]="product.product.imageCover" alt="">
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div>
+                        <p class="m-0">Item : <span class="fw-bold">{{product.product.title}}</span></p>
+                        <p class="m-0">Brand : <span class="fw-bold">{{product.product.brand.name}}</span></p>
+                        <p class="m-0">Count : <span class="fw-bold">{{product.count}}</span></p>
+                        <p class="m-0">Price : <span class="fw-bold">{{product.price |addEGP}}</span></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

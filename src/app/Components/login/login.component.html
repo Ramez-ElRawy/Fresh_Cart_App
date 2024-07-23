@@ -1,0 +1,31 @@
+<div class="w-50 mx-auto my-5">
+    <form (ngSubmit)="handleLogin()" [formGroup]="loginForm">
+        <h2>Login :</h2>
+
+        <p *ngIf="apiErrorMessage" class="alert alert-danger text-center">{{apiErrorMessage}}</p>
+
+        <label class="mt-3" for="userMail">email:</label>
+        <input class="form-control" formControlName="email" id="userMail" type="email" >
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+            <p *ngIf="loginForm.get('email')?.getError('required')" class="my-0">* User Email is required</p>
+            <p *ngIf="loginForm.get('email')?.getError('email')" class="my-0">please enter a valid Email</p>
+        </div>
+
+        <label class="mt-3" for="userPassword">password:</label>
+        <input class="form-control" formControlName="password" id="userPassword" type="password" >
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+            <p *ngIf="loginForm.get('password')?.getError('required')" class="my-0">* Password is required</p>
+            <p *ngIf="loginForm.get('password')?.getError('pattern')" class="my-0">Password should be at least 8 Characters contains:<br/>uppercase character & lowercase character & special character</p>
+        </div>
+
+        <div class="d-flex justify-content-end align-items-center">
+            <a class="mx-3" routerLink="/forgetPassword">Forget Password</a>
+            <button [disabled]="loginForm.invalid || isLoading" class="btn bg-main text-white my-4">
+                <span *ngIf="!isLoading">Login</span>
+                <span *ngIf="isLoading" class="fa-solid fa-spin fa-spinner"></span>
+            </button>
+        </div>
+        
+    </form>
+</div>
+

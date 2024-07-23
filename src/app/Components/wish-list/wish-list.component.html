@@ -1,0 +1,29 @@
+<div class="container bg-main-light p-4 rounded shadow">
+    <h2 class="fw-bold mb-3">My Wish List :</h2>
+    <div *ngFor="let product of wishedProductList" class="row my-4 align-items-center border-top pt-4">
+        <div class="col-md-2">
+            <div>
+                <img class="w-100 img-thumbnail" [src]="product.imageCover" alt="">
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="d-flex justify-content-between align-items">
+                <div>
+                    <p class="fw-bold mb-1">{{product.title}}</p>
+                    <p class="fw-bold text-main">{{product.price |addEGP}}</p>
+                    <a (click)="handleRemoveProductFromWishList(product._id)" class="text-danger cursor-pointer">
+                        <i class="fa-solid fa-trash"></i>
+                        <span class="ms-2">Remove</span>
+                    </a>
+                </div>
+                <div>
+                    <a (click)="handleAddProductToCart(product._id)" class="btn btn-outline-success fs-5">
+                        Add To Cart
+                        <i class="fa-solid fa-cart-plus ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading-screen *ngIf="loadingScreen"></app-loading-screen>

@@ -1,0 +1,23 @@
+<app-home-main-slider></app-home-main-slider>
+
+<h2 class="fw-bold mb-3 mt-3">Shop Popular Categories</h2>
+<app-home-categories-slider></app-home-categories-slider>
+
+<h3 class="h2 fw-bold mt-3">Popular Items This Season</h3>
+
+<div class="w-75 mx-auto my-5">
+    <label class="visually-hidden" for="specificSizeInputGroupUsername">Product Name</label>
+    <div class="input-group">
+        <div class="input-group-text">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input [(ngModel)]="searchTerm" type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Search By Product Name">
+    </div>
+</div>
+
+<div class="row g-4">
+    <div *ngFor="let productDetail of allProducts|search:searchTerm" class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        <app-product [product]="productDetail"></app-product>
+    </div>
+</div>
+<app-loading-screen *ngIf="loadingScreen"></app-loading-screen>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row g-5">
+        <div *ngFor="let brand of allBrands" class="col-md-3">
+            <!-- Button trigger modal -->
+            <a [routerLink]="['/products/brand',brand._id]" (click)="handleGetSpecificBrand(brand._id)" type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="product rounded overflow-hidden border cursor-pointer">
+                    <img class="w-100" [src]="brand.image" alt="">
+                    <p class="text-center fw-bold">{{brand.name}}</p>
+                </div>
+            </a>
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Brand</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div *ngIf="specificBrand" class="d-flex justify-content-around align-items-center">
+                            <div>
+                                <img [src]="specificBrand.image" [alt]="specificBrand.name">
+                            </div>
+                            <div>
+                                <h3 class="fw-bolder text-main">{{specificBrand.name}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                </div>
+            </div> -->
+            
+        </div>
+    </div>
+</div>
+
+
+<app-loading-screen *ngIf="loadingScreen"></app-loading-screen>

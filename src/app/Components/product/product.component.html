@@ -1,0 +1,18 @@
+<div class="p-3 product rounded border position-relative">
+    <a [routerLink] = "['/product',product._id]">
+        <img class="w-100" [src]="product.imageCover" [alt]="product.title">
+        <span class="text-main fw-semibold font-sm d-block mt-2">{{product.category.name}}</span>
+        <p class="fw-bold my-1">{{product.title|titleSummerize:2}}</p>
+        <div class="d-flex justify-content-between mt-2 mb-0">
+            <span class="fw-semibold ">{{product.price|addEGP}}</span> 
+            <div>
+                <i class="fa-solid fa-star rating-color pe-2"></i>
+                <span class="fw-semibold ">{{product.ratingsAverage}}</span> 
+            </div>
+        </div>
+    </a>
+    <button (click)="handleAddProductToCart(product._id)" class="btn bg-main text-white mt-3 w-75">+ Add To Cart</button>
+    <a (click)="handleAddProductToWishList(product._id)">
+        <i [class.text-danger] = "wishedProductsList.includes(product._id)?true:false" class="fa-solid fa-heart fa-2x cursor-pointer"></i>
+    </a>
+</div>

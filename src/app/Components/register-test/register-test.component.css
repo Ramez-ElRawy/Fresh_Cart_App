@@ -1,0 +1,9 @@
+input.form-control:focus{
+    box-shadow: none;
+}
+input.ng-dirty.ng-invalid{
+    border: 2px solid red;
+}
+input.ng-dirty.ng-valid{
+    border: 2px solid green;
+}

@@ -1,0 +1,38 @@
+<div class="row align-items-center">
+    <div class="col-md-4">
+        <div class="border p-5">
+            <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let itemImage of productDetails.images">
+                  <ng-template carouselSlide>
+                    <img class="w-100" [src]="itemImage" [alt]="productDetails.title" [title]="productDetails.title">
+                  </ng-template>
+                </ng-container> 
+            </owl-carousel-o>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div>
+            <h3 class="h2">{{productDetails.title}}</h3>
+            <p class="text-secondary">{{productDetails.description}}</p>
+
+            <span class="text-main fw-bold font-sm">{{productDetails.category.name}}</span>
+            <p class="my-1 fw-bold text-secondary">Available Quantity : {{productDetails.quantity}}</p>
+            <p class="my-1 fw-bold text-secondary">Brand : {{productDetails.brand.name}}</p>
+            <div class="d-flex justify-content-between w-75">
+                <span class="fw-bold">Price : {{productDetails.price}} EGP</span> 
+                <div class=" pe-2">
+                    <i class="fa-solid fa-star rating-color pe-2"></i>
+                    <span class="fw-bold">{{productDetails.ratingsAverage}}</span> 
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <button (click)="handleAddProductToCart(productDetails._id)" class="btn bg-main text-white mt-3 w-75">+ Add To Cart</button>
+                <a (click)="handleAddProductToWishList(productDetails._id)">
+                    <i [class.text-danger] = "wishedProductsList.includes(productDetails._id)?true:false" class="fa-solid fa-heart fa-2x cursor-pointer mt-3 ms-3"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading-screen *ngIf="loadingScreen"></app-loading-screen>
