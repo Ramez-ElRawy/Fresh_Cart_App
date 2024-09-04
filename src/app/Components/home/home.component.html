@@ -19,5 +19,16 @@
     <div *ngFor="let productDetail of allProducts|search:searchTerm" class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
         <app-product [product]="productDetail"></app-product>
     </div>
+    <div class="d-flex flex-column pagination mx-auto my-5" width="150px">
+        <div class="py-3 d-flex justify-content-center ">
+            <button [disabled]="currentPageNumber == 1" class="btn bg-main text-white mx-2 px-4 py-2" (click)="previousPage()">Previous</button>
+            <span class="p-2">{{currentPageNumber}}</span>
+            <button [disabled]="currentPageNumber == totalPagesNumber" class="btn bg-main text-white mx-2 px-4 py-2" (click)="nextPage()">Next</button>
+        </div>
+        <div class="text-center">
+            <p>Page <span class="fw-bold">  {{currentPageNumber}}  </span> Of <span class="fw-bold">  {{totalPagesNumber}}  </span></p>
+        </div>
+    </div>
+    <!-- <app-pagination [currentPageNumber]="currentPageNumber" [totalPagesNumber]="totalPagesNumber"></app-pagination> -->
 </div>
 <app-loading-screen *ngIf="loadingScreen"></app-loading-screen>

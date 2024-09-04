@@ -7,63 +7,61 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul *ngIf="isLoggedUser" class="navbar-nav  mx-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="fw-bold text-main" aria-current="page" routerLink="home">Home</a>
+        <ul *ngIf="isLoggedUser" class="navbar-nav  mx-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center align-items-md-center pt-5 py-md-0">
+          <li class="nav-items">
+            <a class="nav-link fs-5" routerLinkActive="fw-bold text-main" aria-current="page" routerLink="home">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="fw-bold text-main" routerLink="products">Products</a>
+          <li class="nav-items">
+            <a class="nav-link fs-5" routerLinkActive="fw-bold text-main" routerLink="products">Products</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="fw-bold text-main" routerLink="categories">Categories</a>
+          <li class="nav-items">
+            <a class="nav-link fs-5" routerLinkActive="fw-bold text-main" routerLink="categories">Categories</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="fw-bold text-main" routerLink="brands">Brands</a>
+          <li class="nav-items">
+            <a class="nav-link fs-5" routerLinkActive="fw-bold text-main" routerLink="brands">Brands</a>
           </li>
-          
         </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-            <!-- <li class="nav-item d-flex align-items-center">
-                <i class="fab fa-instagram me-3"></i>
-                <i class="fab fa-facebook me-3"></i>
-                <i class="fab fa-tiktok me-3"></i>
-                <i class="fab fa-twitter me-3"></i>
-                <i class="fab fa-linkedin me-3"></i>
-                <i class="fab fa-youtube me-3"></i>
-            </li> -->
-
-            <li *ngIf="!isLoggedUser" class="nav-item">
-              <a class="nav-link" routerLink="login">Login</a>
-            </li>
-            <li *ngIf="!isLoggedUser" class="nav-item">
-                <a class="nav-link" routerLink="register">Register</a>
-            </li>
-
-            <li *ngIf="isLoggedUser" class="nav-item d-flex align-items-center position-relative">
-              <a routerLink="cart">
-                <i class="fa-solid fa-cart-shopping text-dark-emphasis ms-3"></i>
-              </a>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded bg-main">
-                {{numOfCartItems}}
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            </li>
-
-            <li *ngIf="isLoggedUser" class="nav-item position-relative">
-              <a class="nav-link" routerLinkActive="fw-bold text-main" routerLink="wishList">
-                <i class="fa-solid fa-heart text-danger ms-3"></i>
-              </a>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded bg-main">
-                {{numOfWishListItems}}
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            </li>
-
-            <li *ngIf="isLoggedUser" class="nav-item">
-              <a (click)="logOut()" class="nav-link ms-4 fw-bold btn bg-main-light border" routerLink="">SignOut</a>
-            </li>
-
+        <ul class="navbar-nav nav-end ms-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center align-items-md-center py-4 py-md-0">
+          <li *ngIf="!isLoggedUser" class="nav-item me-2">
+            <a class="nav-link fw-bold  rounded logIn" routerLink="login">
+              <div class="d-flex justify-content-between align-items-center px-3">
+                Login
+                <i class="fa-solid fa-arrow-right-to-bracket fs-4 ms-2"></i>
+              </div>
+            </a>
+          </li>
+          <li *ngIf="!isLoggedUser" class="nav-items">
+              <a class="nav-link" routerLink="register">Register</a>
+          </li>
+          <li *ngIf="isLoggedUser" class="nav-item mx-3 my-3">
+            <a routerLink="cart">
+              <div class=" position-relative">
+                <i class="fa-solid fa-cart-shopping text-dark-emphasis fs-3 text-main"></i>
+                <span class="cart-badge badge rounded-5 bg-main">
+                  {{numOfCartItems}}
+                </span>
+              </div>
+            </a>
+          </li>
+          <li *ngIf="isLoggedUser" class="nav-item mx-3 my-3">
+            <a routerLink="wishList">
+              <div class="position-relative">
+                <i class="fa-solid fa-heart text-danger fs-3"></i>
+                <span class="wish-badge badge rounded-5 bg-main">
+                  {{numOfWishListItems}}
+                </span>
+              </div>
+            </a>
+          </li>
+          <li *ngIf="isLoggedUser" class="nav-item">
+            <a (click)="logOut()" class="nav-link ms-4 fw-bold btn  ms-3 logOut" routerLink="">
+              <div class="d-flex fw-bold justify-content-between align-items-center px-3">
+                LogOut
+                <i class="fa-solid fa-arrow-right-from-bracket fs-3 ms-2"></i>   
+              </div>     
+            </a>
+          </li>
         </ul>
       </div>
     </div>

@@ -27,7 +27,7 @@ export class WishListComponent implements OnInit , OnDestroy{
     this._WishListService.getLoggedUserWishlist().subscribe({
       next:(response)=>{
         // Unmapped array
-        console.log(response.data);
+        console.log(response);
         this.wishedProductList = response.data;
         this.loadingScreen = false;
         // this._WishListService.loadingScreen.next(false);

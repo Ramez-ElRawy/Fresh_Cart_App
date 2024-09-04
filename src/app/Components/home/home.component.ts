@@ -20,20 +20,27 @@ export class HomeComponent implements OnInit,OnDestroy {
   searchTerm:string = '';
   wishedProductList:string[] = [];
   loadingScreen:boolean = false;
+  totalPagesNumber!:number;
+  currentPageNumber:number = 1;
   getAllProductsSubscribtion!:Subscription;
 
 
-  constructor(private _ProductService:ProductService , private _WishListService:WishListService){}
+  constructor(private _ProductService:ProductService , private _productService:ProductService, private _WishListService:WishListService){}
   
   ngOnInit(): void {
-    // this._ProductService.loadingScreen.next(true);
+    this.getProductsData();
+  }
+
+  getProductsData(){
     this.loadingScreen = true;
-    this.getAllProductsSubscribtion = this._ProductService.getAllProducts().subscribe({
+    this.getAllProductsSubscribtion = this._ProductService.getAllProducts(20,this.currentPageNumber).subscribe({
       next:(response)=>{
         console.log(response);
+        this.totalPagesNumber = response.metadata.numberOfPages;
+        this.currentPageNumber = response.metadata.currentPage;
+
         this.allProducts = response.data;
         this.loadingScreen = false;
-        // this._ProductService.loadingScreen.next(false);
         console.log(this.allProducts);
       },
       error:(err)=>{console.log(err);
@@ -42,7 +49,31 @@ export class HomeComponent implements OnInit,OnDestroy {
     })
   }
 
+  previousPage(){
+    console.log('previousPage');
+    if (this.currentPageNumber > 1) {
+      console.log('valid');
+      this.currentPageNumber--;
+      this.getProductsData();
+    }
+    else{
+      console.log('invalid');
+    }
+  }
+
+  nextPage(){
+    console.log('nextPage');
+    if (this.currentPageNumber < this.totalPagesNumber) {
+      console.log('valid');
+      this.currentPageNumber++;
+      this.getProductsData();
+    }
+    else{
+      console.log('invalid');
+    }
+  }
+
   ngOnDestroy(): void {
-    // this.getAllProductsSubscribtion.unsubscribe();
+    this.getAllProductsSubscribtion.unsubscribe();
   }
 }

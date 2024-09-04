@@ -1,0 +1,8 @@
+.category-badge{
+    background-color: #0aad0acd;
+    color: #fff;
+}
+.category-badge:hover{
+    background-color: #0aad0a;
+    cursor: pointer;
+}

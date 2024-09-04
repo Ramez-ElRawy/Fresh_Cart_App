@@ -14,7 +14,18 @@ export class CartService {
   order!:IOrder;
 
   constructor(private _HttpClient:HttpClient ) { 
-    this.getLoggedUserCart().subscribe((response)=>{this.cartItemsNum.next(response.numOfCartItems)})
+    this.updateLoggedUserCartItemsCount();
+  }
+
+  updateLoggedUserCartItemsCount(){
+    this.getLoggedUserCart().subscribe({
+      next:(response)=>{this.cartItemsNum.next(response.numOfCartItems)},
+      error:(err)=>{
+        if(err.status == 404){
+          this.cartItemsNum.next(0);
+        }
+      }
+    });
   }
 
   addProductToCart(id:string):Observable<any>

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/Services/cart.service';
+import { WishListService } from 'src/app/Services/wish-list.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,7 @@ export class LoginComponent implements OnDestroy {
   logInSubscribtion!:Subscription;
   decodedToken!:any;
 
-  constructor(private _AuthService:AuthService , private _Router:Router){}
+  constructor(private _AuthService:AuthService , private _Router:Router , private _cartService:CartService, private _wishlistService:WishListService){}
 
   loginForm:FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.required , Validators.email]),
@@ -31,6 +33,8 @@ export class LoginComponent implements OnDestroy {
       next:(response)=>{
         console.log(response);
         localStorage.setItem('token',response.token);
+        this._cartService.updateLoggedUserCartItemsCount();
+        this._wishlistService.updateLoggedUserWishListCount();
 
         // token decoded
         const token = response.token;

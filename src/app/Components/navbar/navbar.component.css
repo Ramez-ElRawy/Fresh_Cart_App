@@ -7,3 +7,33 @@ nav.navbar{
 .fa-cart-shopping,.fa-heart{
     font-size: 20px;
 }
+a.logOut,a.logIn{
+    box-shadow: 0px 0px 96px -60px rgba(0,0,0,0.1);
+}
+a.logOut{
+    background-color: #ff7c893b;
+    /* #dc3545 */
+}
+a.logIn{
+    background-color: #32e59143;
+    /* #198754 */
+}
+span.cart-badge{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+span.wish-badge{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+li.nav-items a{
+    background-color: transparent;
+    padding: 5px 12px;
+}
+li.nav-items a:hover{
+    background-color: #0aad0a;
+    color: #fff;
+    border-radius: 5px;
+}

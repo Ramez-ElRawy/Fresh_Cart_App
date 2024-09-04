@@ -39,6 +39,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ToastrModule } from 'ngx-toastr';
 import { CategoryProductsComponent } from './Components/category-products/category-products.component';
 import { BrandProductsComponent } from './Components/brand-products/brand-products.component';
+import { PaginationComponent } from './Components/pagination/pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import { BrandProductsComponent } from './Components/brand-products/brand-produc
     OrderDetailsComponent,
     CategoryProductsComponent,
     BrandProductsComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

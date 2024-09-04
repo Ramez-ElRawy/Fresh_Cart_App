@@ -13,14 +13,24 @@ export class WishListService {
   loadingScreen = new BehaviorSubject<boolean>(false);
 
   constructor(private _HttpClient:HttpClient) { 
+    this.updateLoggedUserWishListCount();
+  }
+
+  updateLoggedUserWishListCount(){
     this.getLoggedUserWishlist().subscribe({
       next:(response)=>{
         console.log(response);
         this.wishListItemsNum.next(response.count);
+        
         let wishedProduct = response.data;
         if(wishedProduct)
         {
           this.productsWishList.next(wishedProduct.map((product:any)=>{return product._id}));
+        }
+      },
+      error:(err)=>{
+        if (err.status == 404) {
+          this.wishListItemsNum.next(0);
         }
       }
     })

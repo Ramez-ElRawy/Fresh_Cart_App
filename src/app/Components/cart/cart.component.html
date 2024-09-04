@@ -1,42 +1,54 @@
-<div class="container bg-main-light p-4 rounded shadow">  
-    <h2 class="fw-bold mt-5 mb-3">Shop Cart</h2>
-    <p class="fw-bold text-main mb-5">Total Price : {{userCart.totalCartPrice}} EGP</p>      
+<ng-container *ngIf="userCart ; else cartIsEmpty">
+    <div *ngIf="userCart.products.length ; else cartIsEmpty">
+        <div class="container bg-main-light p-4 rounded shadow">
+            <h2 class="fw-bold mt-5 mb-3">Shop Cart</h2>
+            <p class="fw-bold text-main mb-5">Total Price : {{userCart.totalCartPrice}} EGP</p>      
+                
+            <div class="row align-items-center mt-3 pb-3 border-bottom" *ngFor="let product of userCart.products">
+                <div class="col-md-2">
+                    <div>
+                        <img class="w-100 img-thumbnail" [src]="product.product.imageCover" alt="">
+                    </div>
+                </div>
+                <div class="col-md-10 d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="fw-bold font-sm m-0">{{product.product.title}}</p>
+                        <p class="text-main font-sm fw-bold m-0">Price : {{product.price |addEGP}}</p>
+                        <button (click)="handleRemoveCartItem(product.product._id)" class="btn m-0 p-0">
+                            <i class="text-main fa-regular fa-trash-can"></i>
+                            <span class="ms-2">Remove</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button (click)="handleUpdateCartProductQuantity(product.product._id , product.count-1)" class="border-main rounded">-</button>
+                        <span class="mx-3">{{product.count}}</span>
+                        <button (click)="handleUpdateCartProductQuantity(product.product._id , product.count+1)" class="border-main rounded">+</button>
+                    </div>
+                </div>
+            </div>
         
-    <div class="row align-items-center mt-3 pb-3 border-bottom" *ngFor="let product of userCart.products">
-            <div class="col-md-2">
-                <div>
-                    <img class="w-100 img-thumbnail" [src]="product.product.imageCover" alt="">
-                </div>
-            </div>
-            <div class="col-md-10 d-flex justify-content-between align-items-center">
-                <div>
-                    <p class="fw-bold font-sm m-0">{{product.product.title}}</p>
-                    <p class="text-main font-sm fw-bold m-0">Price : {{product.price |addEGP}}</p>
-                    <button (click)="handleRemoveCartItem(product.product._id)" class="btn m-0 p-0">
-                        <i class="text-main fa-regular fa-trash-can"></i>
-                        <span class="ms-2">Remove</span>
-                    </button>
-                </div>
-                <div>
-                    <button (click)="handleUpdateCartProductQuantity(product.product._id , product.count-1)" class="border-main rounded">-</button>
-                    <span class="mx-3">{{product.count}}</span>
-                    <button (click)="handleUpdateCartProductQuantity(product.product._id , product.count+1)" class="border-main rounded">+</button>
-                </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <a [routerLink]="['/shippingAddress',userCart._id]" class="btn bg-main text-white mt-4 mx-3">
+                    Proceed To Shipping Address Details 
+                    <i class="fa-solid fa-truck-fast ms-2"></i>
+                    <!-- <span>
+                        Online Payment
+                    </span>
+                    <span>
+                        <img class="ms-2" width="30px" src="assets/images/master.svg" alt="">
+                    </span> -->
+                </a>
+                <a (click)="handleClearUserCart()" class="btn bg-main text-white mt-4 mx-3">Empty Cart</a>
             </div>
         </div>
+    </div>
+</ng-container>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <a [routerLink]="['/shippingAddress',userCart._id]" class="btn bg-main text-white mt-4 mx-3">
-                Proceed To Shipping Address Details 
-                <i class="fa-solid fa-truck-fast ms-2"></i>
-                <!-- <span>
-                    Online Payment
-                </span>
-                <span>
-                    <img class="ms-2" width="30px" src="assets/images/master.svg" alt="">
-                </span> -->
-            </a>
-            <a (click)="handleClearUserCart()" class="btn bg-main text-white mt-4 mx-3">Empty Cart</a>
-        </div>
-</div>
+<ng-template #cartIsEmpty>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <h2 class="h1 fw-bolder text-center my-5 empty">Cart Is Empty!</h2>
+        <img src="assets/images/cart.png" class="w-50" alt="">
+    </div>
+</ng-template>
+
 <app-loading-screen *ngIf="loadingScreen"></app-loading-screen>

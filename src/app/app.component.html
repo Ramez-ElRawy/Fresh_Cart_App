@@ -1,11 +1,12 @@
-<!-- <app-loading-screen></app-loading-screen> -->
-<app-navbar></app-navbar>
-<app-social-media></app-social-media>
-<div class="container my-5 p-3 position-relative">
-    <router-outlet></router-outlet>
-</div>
-<app-footer></app-footer>
+ <div class="min-vh-100 d-flex flex-column ">
+    <app-navbar></app-navbar>
+    <app-social-media></app-social-media>
+    <div class="container my-5 p-3 position-relative h-100">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer class="mt-auto"></app-footer>
+ </div>
 
 
 
-<!-- <app-register-test></app-register-test> -->
+

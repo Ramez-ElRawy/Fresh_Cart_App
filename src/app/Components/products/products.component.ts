@@ -13,6 +13,8 @@ export class ProductsComponent implements OnInit , OnDestroy{
   allProducts:IProduct[] = [];
   searchTerm:string = '';
   loadingScreen:boolean = false;
+  currentPageNumber:number = 1;
+  
   getAllProductsSubscribtion!:Subscription;
 
   constructor(private _ProductService:ProductService){}
@@ -20,8 +22,10 @@ export class ProductsComponent implements OnInit , OnDestroy{
   ngOnInit(): void {
     // this._ProductService.loadingScreen.next(true);
     this.loadingScreen = true
-    this.getAllProductsSubscribtion = this._ProductService.getAllProducts().subscribe({
+    this.getAllProductsSubscribtion = this._ProductService.getAllProducts(20,this.currentPageNumber).subscribe({
       next:(response)=>{
+        console.log(response);
+        
         this.allProducts = response.data
         this.loadingScreen = false
         // this._ProductService.loadingScreen.next(false);

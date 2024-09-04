@@ -29,6 +29,11 @@ export class CartComponent implements OnInit , OnDestroy{
         this.userCart = response.data;
         this.loadingScreen = false;
         // this._CartService.loadingScreen.next(false);
+
+        console.log(this.getLoggedUserCartSubscribtion);
+        console.log(this.removeCartItemSubscribtion);
+        console.log(this.updateCartProductQuantitySubscribtion);
+        
       },
       error:(err)=>{console.log(err);
         this.loadingScreen = false;
@@ -95,8 +100,12 @@ export class CartComponent implements OnInit , OnDestroy{
   }
 
   ngOnDestroy(): void {
-    // this.getLoggedUserCartSubscribtion.unsubscribe();
-    // this.removeCartItemSubscribtion.unsubscribe();
-    // this.updateCartProductQuantitySubscribtion.unsubscribe();
+    this.getLoggedUserCartSubscribtion.unsubscribe();
+    if (this.removeCartItemSubscribtion) {
+      this.removeCartItemSubscribtion.unsubscribe();
+    }
+    if (this.updateCartProductQuantitySubscribtion) {
+      this.updateCartProductQuantitySubscribtion.unsubscribe();
+    }
   }
 }

@@ -35,7 +35,9 @@ const routes: Routes = [
   {path:"brands" , canActivate:[authGuard] , component:BrandsComponent},
   {path:"shippingAddress/:cartId" , canActivate:[authGuard] , component:ShippingAddressComponent},
   {path:"product/:id" , canActivate:[authGuard] , component:ProductDetailsComponent},
-  
+  {
+    path:"settings", loadChildren:()=>(import('./settings/settings.module').then(m => m.SettingsModule))
+  },
   {path:"login" , canActivate:[noAuthGuard] , component:LoginComponent},
   {path:"forgetPassword" , canActivate:[noAuthGuard] , component:ForgetPasswordComponent},
   {path:"verifyResetCode" , canActivate:[noAuthGuard] , component:VerifyResetCodeComponent},

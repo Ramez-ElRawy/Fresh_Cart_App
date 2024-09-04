@@ -8,12 +8,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ProductService {
 
   // loadingScreen = new BehaviorSubject<boolean>(false);
-
   constructor(private _HttpClient:HttpClient) { }
 
-  getAllProducts():Observable<any>
+  getAllProducts(limit:number,pageNumber:number):Observable<any>
   {
-    return this._HttpClient.get('https://ecommerce.routemisr.com/api/v1/products');
+    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/products?limit=${limit}&page=${pageNumber}`);
   }
 
   getProductById(id:string):Observable<any>

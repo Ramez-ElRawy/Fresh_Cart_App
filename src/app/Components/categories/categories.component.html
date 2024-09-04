@@ -1,14 +1,25 @@
 <div class="row g-5">
-    <div *ngFor="let category of allCategories" class="col-md-4">
-        <a [routerLink]="['/products/category',category._id]">
-            <div (click)="handleGetAllSubcategoriesOnCategory(category._id)" class="border rounded overflow-hidden product cursor-pointer">
-                <img height="350" class="w-100 object-fit-cover" [src]="category.image" alt="">
-                <h2 class="text-center h4 fw-bolder text-success my-3">{{category.name}}</h2>
-            </div>
-        </a>
-    </div>
+    <ng-container *ngIf="true ; else non">
+        <div *ngFor="let category of allCategories" class="col-md-4">
+            <a [routerLink]="['/products/category',category._id]">
+                <div (click)="handleGetAllSubcategoriesOnCategory(category._id)" class="border rounded overflow-hidden product cursor-pointer">
+                    <img height="350" class="w-100 object-fit-cover" [src]="category.image" alt="">
+                    <h2 class="text-center h4 fw-bolder text-success my-3">{{category.name}}</h2>
+                </div>
+            </a>
+        </div>
+    </ng-container>
+
+    <ng-template #non>
+        <div class="vh-100 d-flex justify-content-center align-items-lg-start">
+            <h2 class="h4 fw-bold text-center my-5">No Available Categories Right Now!</h2>
+        </div>
+    </ng-template>    
+
 </div>
+
 <div class="row my-5 g-4">
+    <!-- This Code To Show subcategories in selected category  -->
     <h2 class=" text-center fw-bolder text-main">{{categoryTitle}}</h2>
     <div *ngFor="let subcategory of subcategoriesOnCategory" class="col-md-4">
         <div class="border rounded product cursor-pointer">

@@ -3,7 +3,10 @@
     <ng-container *ngFor="let category of allCategories">
       <ng-template carouselSlide >
         <img class="object-fit-cover" height="300" [src]="category.image" [alt]="category.name">
-        <h2 class="h5 fw-bold text-center py-2">{{category.name}}</h2>
+        <div class="d-flex justify-content-center align-items-center p-2">
+          <span class="py-1 px-2 rounded mt-2 fw-semibold category-badge">{{category.name}}</span>
+        </div>
+        <!-- <h2 class="h5 fw-bold text-center py-2 bg-main ">{{category.name}}</h2> -->
       </ng-template>
     </ng-container>
 
